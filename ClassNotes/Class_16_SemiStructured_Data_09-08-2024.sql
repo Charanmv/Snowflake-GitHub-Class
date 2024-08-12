@@ -193,5 +193,40 @@ SELECT $1:dept_id ,$1:item_id FROM @MANAGE_DB.EXTERNAL_STAGES.PARQUETSTAGE;
                 
   select sysdate();
 	 
-								
+/*{
+  "asin": "1384719342",
+  "helpful": [
+    0,
+    0
+  ],
+  "overall": 5,
+  "reviewText": "Not much to write about here, but it does exactly what it's supposed to. filters out the pop sounds. now my recordings are much more crisp. it is one of the lowest prices pop filters on amazon so might as well buy it, they honestly work the same despite their pricing,",
+  "reviewTime": "02 28, 2014",
+  "reviewerID": "A2IBPI20UZIR0U",
+  "reviewerName": "cassandra tu \"Yeah, well, that's just like, u...",
+  "summary": "good",
+  "unixReviewTime": 1393545600
+}*/
+
+
+create or replace table musical_instruments as(
+select $1:asin :: string as Asin
+    ,$1:helpful[0] :: string as helpful1
+    ,$1:helpful[1] :: string as helpful2
+    ,raw_file:overall :: string as overall
+    ,$1:reviewText :: string as reviewText
+    ,$1:reviewTime :: sysdate() as reviewTime
+    ,$1:reviewerID :: string as reviewerID
+    ,$1:reviewerName :: string as reviewerName
+    ,$1:summary :: string as summary
+    ,$1:unixReviewTime :: current_timestamp as unixReviewTime
+    from OUR_FIRST_DB.PUBLIC.JSON_RAW
+    )
+
+    select * from musical_instruments
+
+    SELECT $1:dept_id ,$1:item_id FROM @MANAGE_DB.EXTERNAL_STAGES.PARQUETSTAGE;
+
+-------------------------------------------------------------
+				
 
