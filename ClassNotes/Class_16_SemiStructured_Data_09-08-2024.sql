@@ -194,5 +194,4 @@ SELECT $1:dept_id ,$1:item_id FROM @MANAGE_DB.EXTERNAL_STAGES.PARQUETSTAGE;
   select sysdate();
 	 
 								
-Snowflak ... s-16.txt
-Displaying Snowflake Class-16.txt.
+
