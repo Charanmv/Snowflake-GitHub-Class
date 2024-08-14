@@ -52,7 +52,7 @@ COPY INTO COPY_DB.PUBLIC.ORDERS
    VALIDATION_MODE = RETURN_ERRORS
     --ON_ERROR =CONTINUE ;
 
-select count(*)  from ORDERS;  --> 4781   + 4 == 4785  
+select count(*)  from COPY_DB.PUBLIC.ORDERS;  --> 4781   + 4 == 4785  
 
 use COPY_DB.PUBLIC;
 // Storing rejected /failed results in a table
@@ -77,7 +77,7 @@ COPY INTO COPY_DB.PUBLIC.ORDERS
 
     ---- 3) Working with rejected records ---- 
 
-SELECT REJECTED_RECORD FROM rejected;
+SELECT REJECTED_RECORD FROM COPY_DB.PUBLIC.rejected;
 
 create or replace table COPY_DB.PUBLIC.rejected_values as 
 select 

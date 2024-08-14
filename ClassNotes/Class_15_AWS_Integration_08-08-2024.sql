@@ -6,7 +6,7 @@
     URL: ----> Stages ---> copy(load data)
 
 1) Create AWS account
-2) Create S3 bucket (create fplders)
+2) Create S3 bucket (create floders)
 3) Load the data into bucket (manual)
 4) Create IAM Roles (provide Access) external id need
    to keep 00000 initaly
@@ -76,7 +76,7 @@ arn:aws:iam::024848483653:role/snowclass-vitech-practice
 arn:aws:iam::211125613752:user/externalstages/cib0y60000
 XU91440_SFCRole=2_Er9P1WnjM4q8VBrZwEXRzXBUU1Q=
 
-
+;
 
 // create storage integration object
 
@@ -86,16 +86,16 @@ create or replace storage integration s3_int
   ENABLED = TRUE 
   STORAGE_AWS_ROLE_ARN = 'arn:aws:iam::024848483653:role/snowclass-vitech-practice'
   STORAGE_ALLOWED_LOCATIONS = ('s3://snowclass-vitech-practice/csv/', 's3://snowclass-vitech-practice/json/')
-   COMMENT = 'This is an s3 integration object '
+   COMMENT = 'This is an s3 integration object ';
 
    // See storage integration properties to fetch external_id so we can update it in S3
 DESC integration s3_int;
 
 CREATE OR REPLACE stage stage_aws_csv
     URL = 's3://snowclass-vitech-practice/csv/'
-    STORAGE_INTEGRATION = s3_int
+    STORAGE_INTEGRATION = s3_int;
 
-    list @stage_aws_csv
+    list @stage_aws_csv;
 
     CREATE OR REPLACE TABLE OUR_FIRST_DB.PUBLIC.movie_titles (
   show_id STRING,
@@ -109,7 +109,7 @@ CREATE OR REPLACE stage stage_aws_csv
   rating STRING,
   duration STRING,
   listed_in STRING,
-  description STRING )
+  description STRING );
 
   CREATE OR REPLACE file format MANAGE_DB.file_formats.csv_fileformat
     type = csv
@@ -117,12 +117,12 @@ CREATE OR REPLACE stage stage_aws_csv
     skip_header = 1
     null_if = ('NULL','null')
     empty_field_as_null = TRUE    
-    FIELD_OPTIONALLY_ENCLOSED_BY = '"'  
+    FIELD_OPTIONALLY_ENCLOSED_BY = '"'  ;
 
 copy into OUR_FIRST_DB.PUBLIC.movie_titles  
   from @stage_aws_csv 
 file_format = (FORMAT_NAME  = MANAGE_DB.file_formats.csv_fileformat)
-files =('netflix_titles.csv')
+files =('netflix_titles.csv');
 
 select count(*)  from  OUR_FIRST_DB.PUBLIC.movie_titles;
 
@@ -172,39 +172,39 @@ CREATE OR REPLACE file format csv_fileformat
     skip_header = 1
     null_if = ('NULL','null')
     empty_field_as_null = TRUE    
-    FIELD_OPTIONALLY_ENCLOSED_BY = '"'  
+    FIELD_OPTIONALLY_ENCLOSED_BY = '"'  ;
 
-copy into countries
+copy into hr.vitech.countries
   from @stage_aws_csv 
 file_format = (FORMAT_NAME  = csv_fileformat)
-files =('countries.csv')
+files =('countries.csv');
 
 copy into HR.VITECH.DEPARTMENTS
   from @stage_aws_csv 
 file_format = (FORMAT_NAME  = csv_fileformat)
-files =('departments.csv')
+files =('departments.csv');
 
 copy into dependents
   from @stage_aws_csv 
 file_format = (FORMAT_NAME  = csv_fileformat)
-files =('dependents.csv')
+files =('dependents.csv');
 
 copy into employees
   from @stage_aws_csv 
 file_format = (FORMAT_NAME  = csv_fileformat)
-files =('Employees.csv')
+files =('Employees.csv');
 
 copy into jobs
   from @stage_aws_csv 
 file_format = (FORMAT_NAME  = csv_fileformat)
-files =('jobs.csv')
+files =('jobs.csv');
 
 copy into locations
   from @stage_aws_csv 
 file_format = (FORMAT_NAME  = csv_fileformat)
-files =('locations.csv')
+files =('locations.csv');
 
 copy into regions
   from @stage_aws_csv 
 file_format = (FORMAT_NAME  = csv_fileformat)
-files =('regions.csv')
+files =('regions.csv');

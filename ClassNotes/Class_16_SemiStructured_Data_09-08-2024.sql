@@ -1,6 +1,7 @@
-	   	Session-16
-	--------------------------
-	Working with SemiStructured Data 
+Snowflake Realtime Training 
+								        Session-16
+								--------------------------
+								Working with SemiStructured Data 
 								
 	CSV ->        123 , chanrn ,  89877777 
     TSV --> 	  123   charan    97899999
@@ -95,16 +96,16 @@ JSON /PArquet file foramt /XML
   
 }
 
-class notes:
+class notes:;
 ---------------
-CREATE SCHEMA EXTERNAL_STAGES 
+CREATE or replace SCHEMA MANAGE_DB.EXTERNAL_STAGES ;
 
 // First step: Load Raw JSON
 
 CREATE OR REPLACE stage MANAGE_DB.EXTERNAL_STAGES.JSONSTAGE
      url='s3://bucketsnowflake-jsondemo';
 
-LIST @MANAGE_DB.EXTERNAL_STAGES.JSONSTAGE
+LIST @MANAGE_DB.EXTERNAL_STAGES.JSONSTAGE;
 
 CREATE OR REPLACE file format MANAGE_DB.FILE_FORMATS.JSONFORMAT
     TYPE = JSON;
@@ -122,33 +123,34 @@ COPY INTO OUR_FIRST_DB.PUBLIC.JSON_RAW
    
 SELECT * FROM OUR_FIRST_DB.PUBLIC.JSON_RAW;
 
-
-
 SELECT $1:city
        ,$1:first_name
-FROM OUR_FIRST_DB.PUBLIC.JSON_RAW
-
-
+FROM OUR_FIRST_DB.PUBLIC.JSON_RAW;
 
 SELECT raw_file:city :: String    as city
        ,raw_file:first_name :: String as fname
        ,raw_file:job.salary :: int as salary 
        ,raw_file:job.title :: String as title 
-FROM OUR_FIRST_DB.PUBLIC.JSON_RAW 
+       ,raw_file:last_name :: string as lname
+       ,raw_file:prev_company[0] :: string as company
+       ,raw_file:spoken_languages[0].language :: string as first_language
+       ,raw_file:spoken_languages[0].level :: string as first_level
+       ,raw_file:spoken_languages[1].language :: string as second_language
+       ,raw_file:spoken_languages[1].level :: string as second_level
+FROM OUR_FIRST_DB.PUBLIC.JSON_RAW ;
 
 create or replace table hrdtls as (
-
 SELECT raw_file: id :: int as sid,
 raw_file:city :: String    as city
        ,raw_file:first_name :: String as fname
        ,raw_file:job.salary :: int as salary 
        ,raw_file:job.title :: String as title 
-FROM OUR_FIRST_DB.PUBLIC.JSON_RAW )
+FROM OUR_FIRST_DB.PUBLIC.JSON_RAW );
 
 
-select * from hrdtls 
+select * from hrdtls; 
 
-select min(salary) from hrdtls
+select min(salary) from hrdtls;
 
 create or replace table languages as (
 SELECT 
@@ -158,17 +160,16 @@ raw_file:spoken_languages[0].language :: string as first_language
 raw_file:spoken_languages[1].language :: string as sec_language,
 raw_file:spoken_languages[1].level :: string as sec_lan_level
 FROM OUR_FIRST_DB.PUBLIC.JSON_RAW 
-
-    )  
+);
 select * from hrdtls;
     select * from languages;
 
 select A.* , B.* from hrdtls A inner join languages B  
-                on A.sid = B.sid 
+                on A.sid = B.sid ;
 
 select A.* , B.* 
     from hrdtls A , languages B  
-            where  A.sid = B.sid 
+            where  A.sid = B.sid ;  
 
 --------------
 
@@ -189,44 +190,28 @@ LIST  @MANAGE_DB.EXTERNAL_STAGES.PARQUETSTAGE;
 SELECT * FROM @MANAGE_DB.EXTERNAL_STAGES.PARQUETSTAGE;
 
                 
-SELECT $1:dept_id ,$1:item_id FROM @MANAGE_DB.EXTERNAL_STAGES.PARQUETSTAGE;
+SELECT 
+$1:_index_level_0__ :: string as index_level,
+$1:cat_id :: string as catid,
+$1:d:: int as di,
+$1:date :: string as currentdate,
+$1:dept_id :: string as deptId ,
+$1:id :: string as id,
+$1:item_id :: string as itemId,
+$1:state_id :: string as stateId,
+$1:store_id :: string as storeId,
+$1:value :: int as value
+FROM @MANAGE_DB.EXTERNAL_STAGES.PARQUETSTAGE;
                 
   select sysdate();
-	 
-/*{
-  "asin": "1384719342",
-  "helpful": [
-    0,
-    0
-  ],
-  "overall": 5,
-  "reviewText": "Not much to write about here, but it does exactly what it's supposed to. filters out the pop sounds. now my recordings are much more crisp. it is one of the lowest prices pop filters on amazon so might as well buy it, they honestly work the same despite their pricing,",
-  "reviewTime": "02 28, 2014",
-  "reviewerID": "A2IBPI20UZIR0U",
-  "reviewerName": "cassandra tu \"Yeah, well, that's just like, u...",
-  "summary": "good",
-  "unixReviewTime": 1393545600
-}*/
 
-
-create or replace table musical_instruments as(
-select $1:asin :: string as Asin
-    ,$1:helpful[0] :: string as helpful1
-    ,$1:helpful[1] :: string as helpful2
-    ,raw_file:overall :: string as overall
-    ,$1:reviewText :: string as reviewText
-    ,$1:reviewTime :: sysdate() as reviewTime
-    ,$1:reviewerID :: string as reviewerID
-    ,$1:reviewerName :: string as reviewerName
-    ,$1:summary :: string as summary
-    ,$1:unixReviewTime :: current_timestamp as unixReviewTime
-    from OUR_FIRST_DB.PUBLIC.JSON_RAW
-    )
-
-    select * from musical_instruments
-
-    SELECT $1:dept_id ,$1:item_id FROM @MANAGE_DB.EXTERNAL_STAGES.PARQUETSTAGE;
-
--------------------------------------------------------------
-				
-
+  {"__index_level_0__":7,
+  "cat_id":"HOBBIES",
+  "d":489,
+  "date":1338422400000000,
+  "dept_id":"HOBBIES_1",
+  "id":"HOBBIES_1_008_CA_1_evaluation",
+  "item_id":"HOBBIES_1_008",
+  "state_id":"CA",
+  "store_id":"CA_1",
+  "value":12}

@@ -36,7 +36,7 @@ validation_mode = return_n_rows|return_errors|return_all_errors
 -> valadate the data file instead of loading them into the table
 ->Return_errors gives all errors in the external_table_files.
 ->return_all_errors gives all errors from previously loaded files if we have 
-used on_error - continue;
+used on_error = continue;
 
 2.return_filed_only
 

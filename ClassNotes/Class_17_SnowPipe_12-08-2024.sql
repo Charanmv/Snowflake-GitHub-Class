@@ -32,7 +32,7 @@ arn:aws:iam::024848483653:role/snowclass-vitech-practice
 arn:aws:iam::211125613752:user/externalstages/cib0y60000
 XU91440_SFCRole=2_+LXc/kWZWYMX2DqMmfK6H0kd8MU=
 
-
+;
 setup event trigger for pipes
 ---------------------------------
 
@@ -66,7 +66,7 @@ create or replace storage integration s3_int_pipe
     Enabled = true
     storage_aws_role_arn ='arn:aws:iam::024848483653:role/snowclass-vitech-practice'
     storage_allowed_locations = ('s3://snowclass-vitech-practice/csv/','s3://snowclass-vitech-practice/json/')
-    comment = 'This is to paractice pipe concept'
+    comment = 'This is to paractice pipe concept';
 
     // See storage integration properties to fetch external_id so we can update it in S3
 DESC integration s3_int_pipe;
@@ -94,27 +94,30 @@ create or replace stage
 MANAGE_DB.external_stages.csv_folder
 url ='s3://snowclass-vitech-practice/csv/'
 storage_integration = s3_int_pipe
-FILE_FORMAT = our_first_db.public.csv_filefomat
+FILE_FORMAT = our_first_db.public.csv_filefomat;
 
  // Create stage object with integration object & file format object
-LIST @MANAGE_DB.external_stages.csv_folder  
+LIST @MANAGE_DB.external_stages.csv_folder ;
+show stages;
+
 
 // Create schema to keep things organized
-CREATE OR REPLACE SCHEMA MANAGE_DB.pipes
+CREATE OR REPLACE SCHEMA MANAGE_DB.pipes;
+show schemas;
 
 //Define pipe
 CREATE OR REPLACE pipe MANAGE_DB.pipes.employee_pipe
 auto_ingest = True
 as
 COPY INTO OUR_FIRST_DB.PUBLIC.employees
-FROM @MANAGE_DB.external_stages.csv_folder  
+FROM @MANAGE_DB.external_stages.csv_folder ; 
 
 // Describe pipe
-DESC pipe  MANAGE_DB.pipes.employee_pipe
+DESC pipe  MANAGE_DB.pipes.employee_pipe;
 
 ALTER pipe MANAGE_DB.pipes.employee_pipe refresh;
 
-SELECT * FROM OUR_FIRST_DB.PUBLIC.employees 
+SELECT * FROM OUR_FIRST_DB.PUBLIC.employees ;
 
 
 ------------------------------------------------
@@ -126,34 +129,34 @@ DESC pipe MANAGE_DB.pipes.employee_pipe;
 
 SHOW PIPES;
 
-SHOW PIPES like '%employee%'
+SHOW PIPES like '%employee%';
 
-SHOW PIPES in database MANAGE_DB
+SHOW PIPES in database MANAGE_DB;
 
-SHOW PIPES in schema MANAGE_DB.pipes
+SHOW PIPES in schema MANAGE_DB.pipes;
 
-SHOW PIPES like '%employee%' in Database MANAGE_DB
+SHOW PIPES like '%employee%' in Database MANAGE_DB;
 
 
 -- Changing pipe (alter stage or file format) --
 
 
 // Pause pipe
-ALTER PIPE MANAGE_DB.pipes.employee_pipe SET PIPE_EXECUTION_PAUSED = true
+ALTER PIPE MANAGE_DB.pipes.employee_pipe SET PIPE_EXECUTION_PAUSED = true;
 
-ALTER PIPE MANAGE_DB.pipes.employee_pipe SET PIPE_EXECUTION_PAUSED = false
+ALTER PIPE MANAGE_DB.pipes.employee_pipe SET PIPE_EXECUTION_PAUSED = false;
  
 // Verify pipe is paused and has pendingFileCount 0 
-SELECT SYSTEM$PIPE_STATUS('MANAGE_DB.pipes.employee_pipe') 
+SELECT SYSTEM$PIPE_STATUS('MANAGE_DB.pipes.employee_pipe') ;
  
  // Recreate the pipe to change the COPY statement in the definition
 CREATE OR REPLACE pipe MANAGE_DB.pipes.employee_pipe
 auto_ingest = TRUE
 AS
 COPY INTO OUR_FIRST_DB.PUBLIC.employees2
-FROM @MANAGE_DB.external_stages.csv_folder  
+FROM @MANAGE_DB.external_stages.csv_folder  ;
 
-ALTER PIPE  MANAGE_DB.pipes.employee_pipe refresh
+ALTER PIPE  MANAGE_DB.pipes.employee_pipe refresh;
 
 
 
@@ -172,8 +175,8 @@ s3 url-   s3://snowclass-vitech-practice/csvloan/
 arn role-   arn:aws:iam::024848483653:role/snow-pipe-loandata
 
 user arn-    arn:aws:iam::211125613752:user/externalstages/cib0y60000
-external id-    XU91440_SFCRole=2_MPukxvDHhbvkD+YYOEohwgGTeSE=
-
+external id-    XU91440_SFCRole=2_d5v1RezBQqnY46dcq6GJJga2hOU=
+;
 
 // create s3 integration 
 

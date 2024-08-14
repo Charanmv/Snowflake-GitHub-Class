@@ -18,5 +18,5 @@
     git add .
     git commit -m "comments"
     git push -u origin <brnach>
-
+    git checkout (use branch name which branch you need to shift)
     
