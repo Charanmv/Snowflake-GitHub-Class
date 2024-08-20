@@ -4,7 +4,7 @@
 Time Travel- Is Nothing but to get the Historical data (0 to 90 days)
 suppose we have deleted/updated the data to recover we use time travel
 
-->after 90days you need data you have to concat snowflake team
+->after 90days you need data you have to contact snowflake team
 after completion of time travel with in 7 days you have to connect snowflake team. 
 
 =>ways to recover data

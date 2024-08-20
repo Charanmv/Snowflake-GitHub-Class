@@ -1,6 +1,9 @@
-Data Loading
- 
- External stages
+ Session-11
+--------------------------
+								
+Data Loading 
+								
+External stages 
 
      Azure , AWS , GCP, SAP , Hadoop , API , (Weather)
 

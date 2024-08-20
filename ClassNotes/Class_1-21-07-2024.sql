@@ -1,3 +1,26 @@
+Session-1
+--------------------------
+
+Database 
+Schema 
+SQL 
+What is the road map for SQL 
+Tables & insert / bulk insert /load 
+				
+Database :	It is a storage location , we can store data ( structured , semi structured , un structured data)
+            It is a collection of data 
+          
+		   create user -->  api -->  database 
+		   instagram -->  fetch --> data base 
+		   xyz organization -->   employee / sales ...etc 
+		   
+          EX:   Create database   <database name > Ecomm /bank / 
+			
+Schema : Logicla structure of the data 
+
+------------------------------------------
+// practice
+
 create or replace database employee;
 
 create or replace schema vitech;
@@ -117,5 +140,3 @@ CREATE TABLE dependents (
 	employee_id INT NOT NULL
 );
 show tables;
-
-

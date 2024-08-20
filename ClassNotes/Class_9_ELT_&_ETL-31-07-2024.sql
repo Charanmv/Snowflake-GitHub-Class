@@ -1,3 +1,6 @@
+   Session-9
+--------------------------
+								
 Data Loading 
 ETL / ELT 
 
@@ -17,8 +20,10 @@ ETL / ELT
 //Creating the table / Meta data
 
 create or replace database OUR_FIRST_DB;
+
  //Check that table is empy
-   USE DATABASE OUR_FIRST_DB;
+USE DATABASE OUR_FIRST_DB;
+
  use schema public;
 
  show databases;
@@ -139,6 +144,7 @@ list @our_first_db.public.ext_loan_stage;
   Gender STRING);
 
 drop table loan_payment_v;
+
   COPY INTO LOAN_PAYMENT_V1
     FROM @OUR_FIRST_DB.PUBLIC.ext_loan_stage
     file_format = (type = csv 
@@ -146,6 +152,7 @@ drop table loan_payment_v;
                    skip_header=1);
 
  select * from LOAN_PAYMENT_V1;
+ 
 CREATE or replace TABLE OUR_FIRST_DB.PUBLIC.LOAN_PAYMENT_V2 (
   Loan_ID STRING,
   loan_status STRING,

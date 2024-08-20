@@ -1,10 +1,26 @@
+ Session-2
+--------------------------
+								
+Git hub link :  https://github.com/VITechTalks/Sql-Practice/
+
+      Database 
+	  Schema 
+      Tables 
+	  Insert the rows 
+      Bulk loading 
+								
+	  Delete 
+	  Truncate 
+	  Drop 
+	  Undrop 
+
 create or replace database hr;
 
 show databases;
 
 create or replace schema vitech;
 
-create table hr.vitech.employee (empid   number,
+create or replace table hr.vitech.employee (empid   number,
                        name    varchar(20),
                        address varchar(30)
                        );
@@ -50,9 +66,10 @@ VALUES
 (110, 'Kiran', 'DEL');
 
 
+
 select * from employee where empid = 103;
 
-CREATE TABLE employees (
+create or replace TABLE employees (
 	employee_id INT,
 	first_name VARCHAR (20) DEFAULT NULL,
 	last_name VARCHAR (25) NOT NULL,
@@ -68,10 +85,6 @@ CREATE TABLE employees (
 
 select * from employees;
 
-  
-select * from employees;
-
-
 select count(*) from employees;
 
 //Table row count
@@ -82,14 +95,11 @@ select count(*) from employees;
 
 undrop table HR.VITECH.EMPLOYEE;
 
-
-undrop table HR.VITECH.EMPLOYEEs;
-
-CREATE TABLE regions (
+create or replace TABLE regions (
 	region_id INT IDENTITY(1,1) PRIMARY KEY,
 	region_name VARCHAR (25) DEFAULT NULL
 );
-CREATE TABLE countries (
+create or replace TABLE countries (
 	country_id CHAR (2) PRIMARY KEY,
 	country_name VARCHAR (40) DEFAULT NULL,
 	region_id INT NOT NULL
@@ -97,7 +107,7 @@ CREATE TABLE countries (
 
 drop table countries;
 
-CREATE TABLE locations (
+create or replace TABLE locations (
 	location_id INT IDENTITY(1,1) PRIMARY KEY,
 	street_address VARCHAR (40) DEFAULT NULL,
 	postal_code VARCHAR (12) DEFAULT NULL,
@@ -105,19 +115,19 @@ CREATE TABLE locations (
 	state_province VARCHAR (25) DEFAULT NULL,
 	country_id CHAR (2) NOT NULL
 );
-CREATE TABLE jobs (
+create or replace TABLE jobs (
 	job_id INT IDENTITY(1,1) PRIMARY KEY,
 	job_title VARCHAR (35) NOT NULL,
 	min_salary DECIMAL (8, 2) DEFAULT NULL,
 	max_salary DECIMAL (8, 2) DEFAULT NULL
 );
-CREATE TABLE departments (
+create or replace TABLE departments (
 	department_id INT IDENTITY(1,1) PRIMARY KEY,
 	department_name VARCHAR (30) NOT NULL,
 	location_id INT DEFAULT NULL
 );
 
-CREATE TABLE employees (
+create or replace TABLE employees (
 	employee_id INT IDENTITY(1,1) PRIMARY KEY,
 	first_name VARCHAR (20) DEFAULT NULL,
 	last_name VARCHAR (25) NOT NULL,
@@ -129,7 +139,7 @@ CREATE TABLE employees (
 	manager_id INT DEFAULT NULL,
 	department_id INT DEFAULT NULL
 );
-CREATE TABLE dependents (
+create or replace TABLE dependents (
 	dependent_id INT IDENTITY(1,1) PRIMARY KEY,
 	first_name VARCHAR (50) NOT NULL,
 	last_name VARCHAR (50) NOT NULL,
@@ -396,8 +406,9 @@ select first_name ,count(*) from employees    group by  first_name
 
  select salary from employees  ;
 
-select * from employees 
-           where salary in ( select max(salary) from employees);
+select * from employees
+where salary in ( select max(salary) from employees);
+           
    select min(salary) from employees ;
 
 
@@ -411,9 +422,9 @@ select * from employees
            (select max(salary) from employees );
 
 
- create schema Practice;
+create or replace schema Practice;
 
- create table customers(company string, country string);
+create or replace table customers(company string, country string);
  
 INSERT INTO customers (company, country)
 VALUES
@@ -423,5 +434,6 @@ VALUES
     ('Paris spécialités', 'France'),
     ('Simons bistro', 'Denmark'),
     ('Wolski Zajazd', 'Poland');
+    
     
 SELECT Company, Country FROM Customers WHERE Country <> 'USA';

@@ -1,3 +1,10 @@
+ Session-10
+--------------------------
+ Data Loading 
+								   
+Bulk Loading 
+								   
+Internal stages & External stages 
 
 // Given Task
 use OUR_FIRST_DB.PUBLIC;

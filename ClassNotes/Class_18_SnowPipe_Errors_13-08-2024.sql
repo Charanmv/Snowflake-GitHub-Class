@@ -60,7 +60,7 @@ SELECT SYSTEM$PIPE_STATUS('MANAGE_DB.pipes.employee_pipe');
 // Snowpipe error message
 SELECT * FROM TABLE(VALIDATE_PIPE_LOAD(
     PIPE_NAME => 'MANAGE_DB.pipes.employee_pipe',
-    START_TIME => DATEADD(HOUR,-2,CURRENT_TIMESTAMP())));
+    START_TIME => DATEADD(HOUR,-6,CURRENT_TIMESTAMP())));
 
 select sysdate();
 
@@ -70,6 +70,7 @@ SELECT * FROM TABLE (INFORMATION_SCHEMA.COPY_HISTORY(
    table_name  =>  'OUR_FIRST_DB.PUBLIC.EMPLOYEES',
    START_TIME =>DATEADD(HOUR,-2,CURRENT_TIMESTAMP())));
 
+//create new table and store error data
 CREATE OR REPLACE TABLE COPY_DB.PUBLIC.rejected_values AS(
 select Rejected_record from table (result_scan('01b658d8-0001-29c2-0005-4c9e00034bee')));
 
