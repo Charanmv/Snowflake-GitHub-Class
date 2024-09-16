@@ -268,11 +268,25 @@ CREATE TABLE employees (
     Updated_at TIMESTAMP             -- Timestamp of the last update
 );
 
-CREATE OR REPLACE pipe 
-auto_ingest = True
-as
-COPY INTO OUR_FIRST_DB.PUBLIC.employees
-FROM @MANAGE_DB.external_stages.csv_folder ; 
+//creating employees pipe
+CREATE OR REPLACE PIPE employees_pipe
+AUTO_INGEST = TRUE
+AS
+COPY INTO employees
+FROM @stage_aws_csv
+FILE_FORMAT = csv_fileformat
+PATTERN = '.*Employees.*';    
+
+//describe pipe
+desc PIPE employees_pipe;
+
+select * from employees;
+
+alter pipe employees_pipe refresh;
+
+ use database vitech_dev_db;
+
+ use schema VITECH_DEV_DB.VITECH_OMS_BRONZE_DATA;
 
 
 

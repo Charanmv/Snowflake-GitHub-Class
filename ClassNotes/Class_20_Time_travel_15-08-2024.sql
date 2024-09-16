@@ -96,3 +96,4 @@ drop table OUR_FIRST_DB.public.test;
 undrop table OUR_FIRST_DB.public.test;
 
 ALTER TABLE test SET DATA_RETENTION_TIME_IN_DAYS=30;
+

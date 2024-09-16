@@ -106,3 +106,4 @@ CROSS JOIN (SELECT TOP 100 * FROM PDB.public.helper) t3;
 
 // Show table and validate
 SHOW TABLES;
+
