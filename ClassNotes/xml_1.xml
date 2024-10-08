@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmp:EmployeeData>
+    <xmp:Employee>
+        <xmp:EmployeeID>001</xmp:EmployeeID>
+        <xmp:FullName>John Doe</xmp:FullName>
+        <xmp:Department>Engineering</xmp:Department>
+        <xmp:Designation>Software Engineer</xmp:Designation>
+        <xmp:HireDate>2022-01-15</xmp:HireDate>
+    </xmp:Employee>
+    <xmp:Employee>
+        <xmp:EmployeeID>002</xmp:EmployeeID>
+        <xmp:FullName>Jane Smith</xmp:FullName>
+        <xmp:Department>Marketing</xmp:Department>
+        <xmp:Designation>Marketing Manager</xmp:Designation>
+        <xmp:HireDate>2021-07-23</xmp:HireDate>
+    </xmp:Employee>
+    <xmp:Employee>
+        <xmp:EmployeeID>003</xmp:EmployeeID>
+        <xmp:FullName>Michael Brown</xmp:FullName>
+        <xmp:Department>Sales</xmp:Department>
+        <xmp:Designation>Sales Executive</xmp:Designation>
+        <xmp:HireDate>2020-03-12</xmp:HireDate>
+    </xmp:Employee>
+    <xmp:Employee>
+        <xmp:EmployeeID>004</xmp:EmployeeID>
+        <xmp:FullName>Emily Davis</xmp:FullName>
+        <xmp:Department>HR</xmp:Department>
+        <xmp:Designation>HR Manager</xmp:Designation>
+        <xmp:HireDate>2019-11-05</xmp:HireDate>
+    </xmp:Employee>
+    <xmp:Employee>
+        <xmp:EmployeeID>005</xmp:EmployeeID>
+        <xmp:FullName>David Wilson</xmp:FullName>
+        <xmp:Department>Finance</xmp:Department>
+        <xmp:Designation>Financial Analyst</xmp:Designation>
+        <xmp:HireDate>2018-06-18</xmp:HireDate>
+    </xmp:Employee>
+    <xmp:Employee>
+        <xmp:EmployeeID>006</xmp:EmployeeID>
+        <xmp:FullName>Linda Johnson</xmp:FullName>
+        <xmp:Department>Engineering</xmp:Department>
+        <xmp:Designation>Senior Engineer</xmp:Designation>
+        <xmp:HireDate>2017-09-30</xmp:HireDate>
+    </xmp:Employee>
+    <xmp:Employee>
+        <xmp:EmployeeID>007</xmp:EmployeeID>
+        <xmp:FullName>Robert Martinez</xmp:FullName>
+        <xmp:Department>Marketing</xmp:Department>
+        <xmp:Designation>Content Strategist</xmp:Designation>
+        <xmp:HireDate>2016-04-22</xmp:HireDate>
+    </xmp:Employee>
+    <xmp:Employee>
+        <xmp:EmployeeID>008</xmp:EmployeeID>
+        <xmp:FullName>Patricia Anderson</xmp:FullName>
+        <xmp:Department>Sales</xmp:Department>
+        <xmp:Designation>Account Manager</xmp:Designation>
+        <xmp:HireDate>2015-12-10</xmp:HireDate>
+    </xmp:Employee>
+    <xmp:Employee>
+        <xmp:EmployeeID>009</xmp:EmployeeID>
+        <xmp:FullName>Charles Thomas</xmp:FullName>
+        <xmp:Department>HR</xmp:Department>
+        <xmp:Designation>Recruiter</xmp:Designation>
+        <xmp:HireDate>2014-08-14</xmp:HireDate>
+    </xmp:Employee>
+    <xmp:Employee>
+        <xmp:EmployeeID>010</xmp:EmployeeID>
+        <xmp:FullName>Barbara Jackson</xmp:FullName>
+        <xmp:Department>Finance</xmp:Department>
+        <xmp:Designation>Accountant</xmp:Designation>
+        <xmp:HireDate>2013-05-27</xmp:HireDate>
+    </xmp:Employee>
+</xmp:EmployeeData>
