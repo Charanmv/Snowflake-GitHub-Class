@@ -210,5 +210,5 @@ CREATE OR REPLACE STAGE my_vitech_stage
  COPY INTO @my_vitech_stage/suppliers_data.csv
 FROM vitech_adf.adf.suppliers
 FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' COMPRESSION = 'NONE')
-OVERWRITE = TRUE ;
+OVERWRITE = TRUE;
 
