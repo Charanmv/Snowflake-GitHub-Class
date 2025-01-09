@@ -2,7 +2,10 @@
 --------------------------
 
 Data masking-
-in Snowflake is a security feature that helps protect sensitive data by obscuring it for unauthorized users. This feature ensures that only users with the proper roles and permissions can view the actual data, while others see a masked version.
+in Snowflake is a security feature that helps protect sensitive data by 
+obscuring it for unauthorized users. 
+This feature ensures that only users with the proper roles and 
+permissions can view the actual data, while others see a masked version.
 
 // create database
 create database demo_db;
