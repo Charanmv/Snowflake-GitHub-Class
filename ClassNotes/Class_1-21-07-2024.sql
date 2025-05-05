@@ -12,7 +12,7 @@ Database :	It is a storage location , we can store data ( structured , semi stru
           
 		   create user -->  api -->  database 
 		   instagram -->  fetch --> data base 
-		   xyz organization -->   employee / sales ...etc 
+		   xyz organization -->   employee / sales etc
 		   
           EX:   Create database   <database name > Ecomm /bank / 
 			
